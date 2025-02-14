@@ -105,7 +105,7 @@ DualEchosounderCommands = [
     ( "IdGo",              "#go",         "",      "" )]
 
 class Echosounder():
-    """! Base class for access to Echologger(c) Single/Dual Frequency Ecosounders
+    """! Base class for access to Echologger(c) Single/Dual Frequency Echosounders
     Contains common access methods for both kinds of echosounders
     It works stable only on echosounders with firmware version > 4.00
     """
@@ -132,7 +132,8 @@ class Echosounder():
     def __del__(self):
         """! Destructor
         """
-        self._serial_port.close()
+        if hasattr(self, '_serial_port'):
+            self._serial_port.close()
 
     def GetSerialPort(self):
         """! Get Serial Port

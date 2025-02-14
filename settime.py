@@ -1,10 +1,10 @@
 # Copyright (c) EofE Ultrasonics Co., Ltd., 2024
-from echosndr import SingleSonar
-from echosndr import DualSonar
+from echosndr import SingleEchosounder
+from echosndr import DualEchosounder
 import time
 
 try:
-    ss = DualSonar("\\\\.\\COM31", 115200)
+    ss = DualEchosounder("\\\\.\\COM62", 115200)
 except:
     print("Unable to open port")
 else:
@@ -13,4 +13,4 @@ else:
     if False == detected:
         print("Port opened but echosounder is not detected")
     else:
-        ss.SetTime()                     # Sync Echosounder's time with the host PC
+        ss.SetCurrentTime()              # Sync Echosounder's time with the host PC

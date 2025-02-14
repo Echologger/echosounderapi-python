@@ -4,7 +4,7 @@ from echosndr import DualEchosounder
 import time
 
 try:
-    ss = DualEchosounder("\\\\.\\COM41", 115200)
+    ss = SingleEchosounder("\\\\.\\COM62", 115200)
 except:
     print("Unable to open port")
 else:
@@ -19,6 +19,7 @@ else:
         ss.SetValue("IdInterval", "0.2") # Set interval between pings 0.2 seconds
         
         if True == ss.Start(): 
+            print("Working Frequency:", ss.GetValue("IdGetWorkFreq"), "Hz")
             time.sleep(2.0)                       # pause for 2 seconds
             data = ss.ReadData(128)               # read couple of bytes
             print(data.decode("latin_1"), end='') # Show data
